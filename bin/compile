@@ -70,7 +70,7 @@ then
 fi
 
 # Flush out $GOPATH before building
-rm -rf $GOPATH/*
+rm -rvf $GOPATH/*
 
 name=$(cat $build/.godir)
 p=$GOPATH/src/$name
