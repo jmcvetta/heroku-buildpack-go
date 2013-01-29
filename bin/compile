@@ -53,6 +53,7 @@ GOPATH=$build/.heroku/g export GOPATH
 PATH=$GOROOT/bin:$PATH
 
 
+
 if ! (which hg > /dev/null && which bzr > /dev/null)
 then
     echo -n "       Installing Virtualenv..."
@@ -73,6 +74,10 @@ name=$(cat $build/.godir)
 p=$GOPATH/src/$name
 mkdir -p $p
 cp -R $build/* $p
+
+# Flush out GOPATH before running go get
+rm -rf $GOPATH
+mkdir $GOPATH
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Running: go get -tags heroku ./..."
